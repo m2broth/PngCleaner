@@ -1,0 +1,17 @@
+{
+    "name": "vmalygin/pngcleaner",
+    "description": "Clean all private chunks from png",
+    "authors": [
+        {
+            "name": "vmalygin",
+            "email": "vmalygin@acceptic.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PngCleaner\\": "src/PngCleaner"
+        }
+    }
+}
