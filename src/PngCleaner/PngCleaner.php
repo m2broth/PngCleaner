@@ -13,6 +13,24 @@ class PngCleaner
     ];
 
     /**
+     * Check PNG chunk as critical/ancillary and public/private.
+     * We should strip only critical private chunks.
+     *
+     * @param $chunkType
+     * @return bool
+     */
+    private static function checkChunkType($chunkType)
+    {
+        if (empty($chunkType) || ctype_upper(substr($chunkType, 0, 1)) || ctype_upper(substr($chunkType, 1, 1))) {
+            throw new PngCleanerException(
+                sprintf('Invalid chunk type "%s"', $chunkType)
+            );
+        }
+
+        return true;
+    }
+
+    /**
      * Strict provided private chunks from png file
      *
      * @param $srcFile src png file
@@ -23,6 +41,9 @@ class PngCleaner
      */
     public static function clean($srcFile, $destFile, array $types)
     {
+        //check chunks on private and critical
+        array_walk($types, 'self::checkChunkType');
+
         if (!empty(array_diff($types, self::$_allowedTypes))) {
             throw new PngCleanerException('Provide types don\'t allowed');
         }
