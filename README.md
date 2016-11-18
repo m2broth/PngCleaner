@@ -9,3 +9,5 @@ This method accepts next params:
 - list of chunk types to remove
 
 ex. PngCleanr::clean('/home/user/Documents/huge.png', '/home/user/Documents/clean.png', ['mkBS']);
+
+First time the cleaner supports only Adobe Fireworks chunks.
